@@ -10,7 +10,7 @@ export default function Articles() {
 		<HelmetProvider>
 			<Helmet>
 				<title>{`Articles | ${siteData.main.offTitle}`}</title>
-				<link rel='canonical' href='https://zakariaslimane.xyz/articles' />
+				<link rel='canonical' href='https://zakariaslimane.dev/articles' />
 				<meta name='description' content={currentSEO.description} />
 				<meta name='keywords' content={currentSEO.keywords.join(', ')} />
 				<meta property='og:title' content={`Articles | ${siteData.main.title}`} />

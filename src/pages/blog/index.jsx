@@ -15,7 +15,7 @@ export default function Blog({ posts }) {
 		<HelmetProvider>
 			<Helmet>
 				<title>{`Blog | ${siteData.main.offTitle}`}</title>
-				<link rel='canonical' href='https://zakariaslimane.xyz/blog' />
+				<link rel='canonical' href='https://zakariaslimane.dev/blog' />
 				<meta name='description' content={currentSEO.description} />
 				<meta name='keywords' content={currentSEO.keywords.join(', ')} />
 				<meta property='og:title' content={`Blog | ${siteData.main.title}`} />
@@ -55,7 +55,7 @@ export default function Blog({ posts }) {
 export async function getStaticProps() {
 	const files = fs.readdirSync(path.join('src', 'content', 'blog'));
 
-	const posts = files.map(filename => {
+	const posts = files.map((filename) => {
 		const markdownWithMeta = fs.readFileSync(
 			path.join('src', 'content', 'blog', filename),
 			'utf-8'
@@ -65,13 +65,13 @@ export async function getStaticProps() {
 		return {
 			...frontMatter,
 			readingTime: calculateReadingTime(content),
-			slug: filename.replace('.mdx', '')
+			slug: filename.replace('.mdx', ''),
 		};
 	});
 
 	return {
 		props: {
-			posts: posts.sort((a, b) => new Date(b.date) - new Date(a.date))
-		}
+			posts: posts.sort((a, b) => new Date(b.date) - new Date(a.date)),
+		},
 	};
 }

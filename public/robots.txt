@@ -8,4 +8,4 @@ Crawl-delay: 10
 User-agent: *
 Disallow:
 
-Sitemap: https://zakariaslimane.xyz/sitemap.xml/
+Sitemap: https://zakariaslimane.dev/sitemap.xml/

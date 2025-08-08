@@ -16,7 +16,7 @@ export default function Home() {
 			<HelmetProvider>
 				<Helmet>
 					<title>{siteData.main.title}</title>
-					<link rel='canonical' href='https://zakariaslimane.xyz' />
+					<link rel='canonical' href='https://zakariaslimane.dev' />
 					<meta name='description' content={currentSEO.description} />
 					<meta name='keywords' content={currentSEO.keywords.join(', ')} />
 					<meta property='og:title' content={siteData.main.title} />
