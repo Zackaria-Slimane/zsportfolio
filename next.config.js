@@ -15,7 +15,7 @@ const nextConfig = {
 	output: 'standalone',
 	devIndicators: {
 		buildActivity: true,
-		buildActivityPosition: 'bottom-right',
+		position: 'bottom-right',
 	},
 	pageExtensions: ['js', 'jsx', 'mdx'],
 };

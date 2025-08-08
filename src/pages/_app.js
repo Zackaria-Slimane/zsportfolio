@@ -1,20 +1,45 @@
 import '@/styles/globals.css';
 import Head from 'next/head';
-import { useState } from 'react';
+import Script from 'next/script';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
-import { useRouter } from 'next/router';
 import { Layout } from '@/components/Layout';
 import { ToTop } from '@/components/ui/ToTop';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 
 export default function App({ Component, pageProps }) {
-	const { pathname } = useRouter();
-	const [path, setPath] = useState(pathname);
+	const router = useRouter();
+	const [path, setPath] = useState(router.pathname);
 	const [theme, setTheme] = useState('light');
+
+	useEffect(() => {
+		const handleRouteChange = (url) => {
+			if (window.gtag) {
+				window.gtag('config', 'G-W4ZSVZ6B49', { page_path: url });
+			}
+		};
+		router.events.on('routeChangeComplete', handleRouteChange);
+		return () => {
+			router.events.off('routeChangeComplete', handleRouteChange);
+		};
+	}, [router.events]);
 
 	return (
 		<>
+			<Script
+				src='https://www.googletagmanager.com/gtag/js?id=G-W4ZSVZ6B49'
+				strategy='afterInteractive'
+			/>
+			<Script id='gtag-init' strategy='afterInteractive'>
+				{`
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-W4ZSVZ6B49');
+				`}
+			</Script>
 			<Head>
 				<meta charSet='utf-8' />
 				<link rel='icon' href='/favicon.ico' />
